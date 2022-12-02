@@ -22,8 +22,6 @@ struct LandingView: View {
                             }
                         }
                         .padding()
-                        .background(Color(red: 0, green: 0, blue: 0.5))
-                        .clipShape(Capsule())
                         .redacted(reason: viewModel.genres.isEmpty ? .placeholder : []) // Revisit
                     }
                 }
