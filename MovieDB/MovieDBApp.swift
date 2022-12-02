@@ -13,7 +13,7 @@ struct MovieDBApp: App {
         WindowGroup {
             LandingView(
                 viewModel: .init(
-                    service: ServiceFacade.self
+                    genreService: GenreServiceFacade.self
                 )
             )
         }

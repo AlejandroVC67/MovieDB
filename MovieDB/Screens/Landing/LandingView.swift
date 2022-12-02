@@ -18,7 +18,7 @@ struct LandingView: View {
                 .foregroundColor(.accentColor)
             Text("Hello, world!")
         }.onAppear {
-            viewModel.fetchMovieGenres()
+            viewModel.fetchAllGenres()
         }
     }
 }
@@ -27,7 +27,7 @@ struct LandingView_Previews: PreviewProvider {
     static var previews: some View {
         LandingView(
             viewModel: .init(
-                service: ServiceFacade.self
+                genreService: GenreServiceFacade.self
             )
         )
     }

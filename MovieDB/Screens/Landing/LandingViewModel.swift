@@ -9,21 +9,34 @@ import Foundation
 
 class LandingViewModel {
     
-    private let service: ServiceRepository.Type
+    private let genreService: GenreServiceRepository.Type
     private(set) var genres: [MovieGenre] = []
+    private(set) var movies: [Movie] = []
     
-    
-    init(service: ServiceRepository.Type) {
-        self.service = service
+    init(genreService: GenreServiceRepository.Type) {
+        self.genreService = genreService
     }
     
-    func fetchMovieGenres() {
-        service.execute(for: .getMovieGenres) { [unowned self] (response: Result<MovieGenreResponse, ServiceError>) in
-            switch response {
-            case .success(let response):
+    func fetchAllGenres() {
+        Task {
+            do {
+                let response = try await genreService.fetchAllGenres()
                 self.genres = response.genres
                 print(self.genres)
-            case .failure(let error): print(error)
+            } catch let error {
+                print(error)
+            }
+        }
+    }
+    
+    func fetchMovies(for genre: MovieGenre) {
+        Task {
+            do {
+                let response = try await genreService.fetchMoviesBasedOn(genreId: genre.id)
+                self.movies = response.results
+                print(self.movies)
+            } catch let error {
+                print(error)
             }
         }
     }

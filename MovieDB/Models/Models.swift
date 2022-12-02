@@ -15,3 +15,14 @@ struct MovieGenre: Codable {
     let id: Int
     let name: String
 }
+
+struct MovieListResponse: Codable {
+    let results: [Movie]
+}
+
+
+struct Movie: Codable {
+    let id: Int
+    let title: String
+    let popularity: Double
+}
