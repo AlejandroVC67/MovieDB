@@ -10,12 +10,18 @@ import Foundation
 @MainActor
 class LandingViewModel: ObservableObject {
     
-    private let genreService: GenreServiceRepository.Type
     @Published private(set) var genres: [MovieGenre] = []
     @Published private(set) var movies: [Movie] = []
     
-    init(genreService: GenreServiceRepository.Type) {
+    private let genreService: GenreServiceRepository.Type
+    private let movieService: MovieServiceRepository.Type
+    
+    init(
+        genreService: GenreServiceRepository.Type,
+        movieService: MovieServiceRepository.Type
+    ) {
         self.genreService = genreService
+        self.movieService = movieService
     }
     
     func fetchAllGenres() {
@@ -36,6 +42,18 @@ class LandingViewModel: ObservableObject {
                 let response = try await genreService.fetchMoviesBasedOn(genreId: genre.id)
                 self.movies = response.results
                 print(self.movies)
+            } catch let error {
+                print(error)
+            }
+        }
+    }
+    
+    func fetchTopRatedMovies() {
+        Task {
+            do {
+                let response = try await movieService.fetchTopRatedMovies()
+                self.movies = response.results
+                print(movies)
             } catch let error {
                 print(error)
             }

@@ -40,6 +40,7 @@ struct LandingView: View {
         }
         .task {
             viewModel.fetchAllGenres()
+            viewModel.fetchTopRatedMovies()
         }
     }
 }
@@ -48,7 +49,8 @@ struct LandingView_Previews: PreviewProvider {
     static var previews: some View {
         LandingView(
             viewModel: .init(
-                genreService: GenreServiceFacade.self
+                genreService: GenreServiceFacade.self,
+                movieService: MovieServiceFacade.self
             )
         )
     }

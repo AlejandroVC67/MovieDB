@@ -18,6 +18,7 @@
 		B76B4FEE293A891E00F68CC3 /* ServiceRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B76B4FED293A891E00F68CC3 /* ServiceRepository.swift */; };
 		B76B4FF4293A8E9100F68CC3 /* LandingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B76B4FF3293A8E9100F68CC3 /* LandingViewModel.swift */; };
 		B76B4FF7293A904A00F68CC3 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = B76B4FF6293A904A00F68CC3 /* Models.swift */; };
+		B76B4FF9293AA83300F68CC3 /* MovieServiceFacade.swift in Sources */ = {isa = PBXBuildFile; fileRef = B76B4FF8293AA83300F68CC3 /* MovieServiceFacade.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +53,7 @@
 		B76B4FED293A891E00F68CC3 /* ServiceRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceRepository.swift; sourceTree = "<group>"; };
 		B76B4FF3293A8E9100F68CC3 /* LandingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingViewModel.swift; sourceTree = "<group>"; };
 		B76B4FF6293A904A00F68CC3 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		B76B4FF8293AA83300F68CC3 /* MovieServiceFacade.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieServiceFacade.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +144,7 @@
 			children = (
 				B76B4FEB293A890D00F68CC3 /* GenreServiceFacade.swift */,
 				B76B4FED293A891E00F68CC3 /* ServiceRepository.swift */,
+				B76B4FF8293AA83300F68CC3 /* MovieServiceFacade.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -302,6 +305,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B76B4FC3293A876800F68CC3 /* LandingView.swift in Sources */,
+				B76B4FF9293AA83300F68CC3 /* MovieServiceFacade.swift in Sources */,
 				B76B4FF4293A8E9100F68CC3 /* LandingViewModel.swift in Sources */,
 				B76B4FEC293A890D00F68CC3 /* GenreServiceFacade.swift in Sources */,
 				B76B4FC1293A876800F68CC3 /* MovieDBApp.swift in Sources */,
