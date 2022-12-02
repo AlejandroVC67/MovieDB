@@ -12,23 +12,23 @@ struct LandingView: View {
     @ObservedObject var viewModel: LandingViewModel
     
     var body: some View {
-        VStack {
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack {
-                    ForEach(viewModel.genres) { genre in
-                        Button(genre.name) {
-                            Task {
-                                await viewModel.fetchMovies(for: genre)
+        NavigationView {
+            VStack {
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack {
+                        ForEach(viewModel.genres) { genre in
+                            Button(genre.name) {
+                                Task {
+                                    await viewModel.fetchMovies(for: genre)
+                                }
                             }
+                            .padding()
+                            .redacted(reason: viewModel.genres.isEmpty ? .placeholder : []) // Revisit
                         }
-                        .padding()
-                        .redacted(reason: viewModel.genres.isEmpty ? .placeholder : []) // Revisit
                     }
+                    .padding()
                 }
-                .padding()
-            }
-            
-            NavigationView {
+                
                 List(viewModel.movies) { movie in
                     NavigationLink {
                         // TODO: Movie Detail
@@ -36,9 +36,7 @@ struct LandingView: View {
                         Text(movie.title)
                             .redacted(reason: viewModel.genres.isEmpty ? .placeholder : []) // Revisit
                     }
-
                 }
-                .navigationTitle("Movies")
             }
         }
         .task {
