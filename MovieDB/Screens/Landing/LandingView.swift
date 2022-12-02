@@ -17,7 +17,9 @@ struct LandingView: View {
                 HStack {
                     ForEach(viewModel.genres) { genre in
                         Button(genre.name) {
-                            viewModel.fetchMovies(for: genre)
+                            Task {
+                                await viewModel.fetchMovies(for: genre)
+                            }
                         }
                         .padding()
                         .background(Color(red: 0, green: 0, blue: 0.5))
@@ -42,8 +44,8 @@ struct LandingView: View {
             }
         }
         .task {
-            viewModel.fetchAllGenres()
-            viewModel.fetchTopRatedMovies()
+            await viewModel.fetchAllGenres()
+            await viewModel.fetchTopRatedMovies()
         }
     }
 }

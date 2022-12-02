@@ -24,39 +24,33 @@ class LandingViewModel: ObservableObject {
         self.movieService = movieService
     }
     
-    func fetchAllGenres() {
-        Task {
-            do {
-                let response = try await genreService.fetchAllGenres()
-                self.genres = response.genres
-                print(self.genres)
-            } catch let error {
-                print(error)
-            }
+    func fetchAllGenres() async {
+        do {
+            let response = try await genreService.fetchAllGenres()
+            self.genres = response.genres
+            print(self.genres)
+        } catch let error {
+            print(error)
         }
     }
     
-    func fetchMovies(for genre: MovieGenre) {
-        Task {
-            do {
-                let response = try await genreService.fetchMoviesBasedOn(genreId: genre.id)
-                self.movies = response.results
-                print(self.movies)
-            } catch let error {
-                print(error)
-            }
+    func fetchMovies(for genre: MovieGenre) async {
+        do {
+            let response = try await genreService.fetchMoviesBasedOn(genreId: genre.id)
+            self.movies = response.results
+            print(self.movies)
+        } catch let error {
+            print(error)
         }
     }
     
-    func fetchTopRatedMovies() {
-        Task {
-            do {
-                let response = try await movieService.fetchTopRatedMovies()
-                self.movies = response.results
-                print(movies)
-            } catch let error {
-                print(error)
-            }
+    func fetchTopRatedMovies() async {
+        do {
+            let response = try await movieService.fetchTopRatedMovies()
+            self.movies = response.results
+            print(movies)
+        } catch let error {
+            print(error)
         }
     }
 }
