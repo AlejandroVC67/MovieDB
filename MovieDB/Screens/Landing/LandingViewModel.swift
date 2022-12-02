@@ -7,11 +7,11 @@
 
 import Foundation
 
-class LandingViewModel {
+class LandingViewModel: ObservableObject {
     
     private let genreService: GenreServiceRepository.Type
-    private(set) var genres: [MovieGenre] = []
-    private(set) var movies: [Movie] = []
+    @Published private(set) var genres: [MovieGenre] = []
+    @Published private(set) var movies: [Movie] = []
     
     init(genreService: GenreServiceRepository.Type) {
         self.genreService = genreService

@@ -11,7 +11,7 @@ struct MovieGenreResponse: Codable {
     let genres: [MovieGenre]
 }
 
-struct MovieGenre: Codable {
+struct MovieGenre: Codable, Identifiable {
     let id: Int
     let name: String
 }
@@ -21,7 +21,7 @@ struct MovieListResponse: Codable {
 }
 
 
-struct Movie: Codable {
+struct Movie: Codable, Identifiable {
     let id: Int
     let title: String
     let popularity: Double
