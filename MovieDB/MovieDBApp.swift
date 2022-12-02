@@ -11,7 +11,11 @@ import SwiftUI
 struct MovieDBApp: App {
     var body: some Scene {
         WindowGroup {
-            LandingView()
+            LandingView(
+                viewModel: .init(
+                    service: ServiceFacade.self
+                )
+            )
         }
     }
 }

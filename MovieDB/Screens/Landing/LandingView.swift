@@ -8,19 +8,27 @@
 import SwiftUI
 
 struct LandingView: View {
+    
+    let viewModel: LandingViewModel
+    
     var body: some View {
         VStack {
             Image(systemName: "globe")
                 .imageScale(.large)
                 .foregroundColor(.accentColor)
             Text("Hello, world!")
+        }.onAppear {
+            viewModel.fetchMovieGenres()
         }
-        .padding()
     }
 }
 
 struct LandingView_Previews: PreviewProvider {
     static var previews: some View {
-        LandingView()
+        LandingView(
+            viewModel: .init(
+                service: ServiceFacade.self
+            )
+        )
     }
 }
