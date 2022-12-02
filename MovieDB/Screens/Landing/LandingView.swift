@@ -25,13 +25,16 @@ struct LandingView: View {
                         .redacted(reason: viewModel.genres.isEmpty ? .placeholder : []) // Revisit
                     }
                 }
+                .padding()
             }
+            
             NavigationView {
                 List(viewModel.movies) { movie in
                     NavigationLink {
                         // TODO: Movie Detail
                     } label: {
                         Text(movie.title)
+                            .redacted(reason: viewModel.genres.isEmpty ? .placeholder : []) // Revisit
                     }
 
                 }
