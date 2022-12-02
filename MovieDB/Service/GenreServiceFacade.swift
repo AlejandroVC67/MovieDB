@@ -12,7 +12,7 @@ protocol GenreServiceRepository {
     static func fetchMoviesBasedOn(genreId: Int) async throws -> MovieListResponse
 }
 
-struct GenreServiceFacade: GenreServiceRepository, ServiceRepository {
+struct GenreServiceFacade: GenreServiceRepository {
     static func fetchAllGenres() async throws -> MovieGenreResponse {
         guard let url = URL(string: ServiceFlow.getMovieGenres.path) else {
             throw ServiceError.badUrl
