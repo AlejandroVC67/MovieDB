@@ -7,6 +7,7 @@
 
 import Foundation
 
+@MainActor
 class LandingViewModel: ObservableObject {
     
     private let genreService: GenreServiceRepository.Type
