@@ -23,7 +23,7 @@ struct LandingView: View {
                                 }
                             }
                             .padding()
-                            .redacted(reason: viewModel.genres.isEmpty ? .placeholder : []) // Revisit
+                            .redacted(reason: viewModel.genres.isEmpty ? .placeholder : [])
                         }
                     }
                     .padding()
@@ -34,7 +34,7 @@ struct LandingView: View {
                         // TODO: Movie Detail
                     } label: {
                         Text(movie.title)
-                            .redacted(reason: viewModel.genres.isEmpty ? .placeholder : []) // Revisit
+                            .redacted(reason: viewModel.movies.isEmpty ? .placeholder : [])
                     }
                 }
             }
@@ -48,7 +48,20 @@ struct LandingView: View {
 
 struct LandingView_Previews: PreviewProvider {
     static var previews: some View {
-        LandingView(
+//        let environment: Environment = .init(
+//            service: .init(
+//                moviesClient: .init(
+//                    fetchTopRatedMovies: {
+//                        .init(results: [])
+//                    }
+//                ),
+//                genresClient: .init(
+//                    fetchAllGenres: { .init(genres: []) },
+//                    fetchMoviesBasedOn: { _ in .init(results: []) }
+//                )
+//            )
+//        )
+        return LandingView(
             viewModel: .init(environment: .live)
         )
     }

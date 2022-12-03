@@ -107,7 +107,6 @@
 		B76B4FD0293A876A00F68CC3 /* MovieDBTests */ = {
 			isa = PBXGroup;
 			children = (
-				B76B5000293AAF6400F68CC3 /* Mocks */,
 				B76B4FFC293AAE4200F68CC3 /* LandingVIewModelTests.swift */,
 			);
 			path = MovieDBTests;
@@ -146,13 +145,6 @@
 				B76B4FF6293A904A00F68CC3 /* Models.swift */,
 			);
 			path = Models;
-			sourceTree = "<group>";
-		};
-		B76B5000293AAF6400F68CC3 /* Mocks */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Mocks;
 			sourceTree = "<group>";
 		};
 		B76B5009293AE33300F68CC3 /* Environment */ = {
