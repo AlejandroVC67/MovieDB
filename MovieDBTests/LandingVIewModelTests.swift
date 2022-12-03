@@ -13,10 +13,7 @@ final class LandingVIewModelTests: XCTestCase {
     
     func testFetchAllGenres_givenSuccessMock_shouldReturnGenres() async {
         // Given
-        let viewModel = LandingViewModel(
-            genreService: GenreServiceFacadeSuccessMock.self,
-            movieService: MovieServiceFacadeSuccessMock.self
-        )
+        let viewModel = LandingViewModel(environment: .mock)
         
         // When
         await viewModel.fetchAllGenres()
@@ -27,10 +24,7 @@ final class LandingVIewModelTests: XCTestCase {
     
     func testFetchMoviesForGenre_givenSuccessMock_shouldReturnMovies() async {
         // Given
-        let viewModel = LandingViewModel(
-            genreService: GenreServiceFacadeSuccessMock.self,
-            movieService: MovieServiceFacadeSuccessMock.self
-        )
+        let viewModel = LandingViewModel(environment: .mock)
         let genre = MovieGenre(id: 1, name: "test")
         
         // When
@@ -42,10 +36,7 @@ final class LandingVIewModelTests: XCTestCase {
     
     func testFetchTopRatedMovies_givenSuccessMock_shouldReturnMovies() async {
         // Given
-        let viewModel = LandingViewModel(
-            genreService: GenreServiceFacadeSuccessMock.self,
-            movieService: MovieServiceFacadeSuccessMock.self
-        )
+        let viewModel = LandingViewModel(environment: .mock)
         
         // When
         await viewModel.fetchTopRatedMovies()

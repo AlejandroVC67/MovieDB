@@ -12,10 +12,7 @@ struct MovieDBApp: App {
     var body: some Scene {
         WindowGroup {
             LandingView(
-                viewModel: .init(
-                    genreService: GenreServiceFacade.self,
-                    movieService: MovieServiceFacade.self
-                )
+                viewModel: .init()
             )
         }
     }

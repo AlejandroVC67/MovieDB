@@ -49,10 +49,7 @@ struct LandingView: View {
 struct LandingView_Previews: PreviewProvider {
     static var previews: some View {
         LandingView(
-            viewModel: .init(
-                genreService: GenreServiceFacade.self,
-                movieService: MovieServiceFacade.self
-            )
+            viewModel: .init(environment: .live)
         )
     }
 }

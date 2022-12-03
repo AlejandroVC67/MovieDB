@@ -13,22 +13,18 @@ class LandingViewModel: ObservableObject {
     @Published private(set) var genres: [MovieGenre] = []
     @Published private(set) var movies: [Movie] = []
     
-    private let genreService: GenreServiceRepository.Type
-    private let movieService: MovieServiceRepository.Type
+    private let environment: Environment
     
     init(
-        genreService: GenreServiceRepository.Type,
-        movieService: MovieServiceRepository.Type
+        environment: Environment = .live
     ) {
-        self.genreService = genreService
-        self.movieService = movieService
+        self.environment = environment
     }
     
     func fetchAllGenres() async {
         do {
-            let response = try await genreService.fetchAllGenres()
+            let response = try await environment.service.genresClient.fetchAllGenres()
             self.genres = response.genres
-            print(self.genres)
         } catch let error {
             print(error)
         }
@@ -36,9 +32,8 @@ class LandingViewModel: ObservableObject {
     
     func fetchMovies(for genre: MovieGenre) async {
         do {
-            let response = try await genreService.fetchMoviesBasedOn(genreId: genre.id)
+            let response = try await environment.service.genresClient.fetchMoviesBasedOn(genre.id)
             self.movies = response.results
-            print(self.movies)
         } catch let error {
             print(error)
         }
@@ -46,9 +41,8 @@ class LandingViewModel: ObservableObject {
     
     func fetchTopRatedMovies() async {
         do {
-            let response = try await movieService.fetchTopRatedMovies()
+            let response = try await environment.service.moviesClient.fetchTopRatedMovies()
             self.movies = response.results
-            print(movies)
         } catch let error {
             print(error)
         }

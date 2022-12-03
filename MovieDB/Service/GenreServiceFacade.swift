@@ -7,33 +7,51 @@
 
 import Foundation
 
-protocol GenreServiceRepository {
-    static func fetchAllGenres() async throws -> MovieGenreResponse
-    static func fetchMoviesBasedOn(genreId: Int) async throws -> MovieListResponse
+struct GenreServiceClient {
+    var fetchAllGenres: () async throws -> MovieGenreResponse
+    var fetchMoviesBasedOn: (_ genreId: Int) async throws -> MovieListResponse
 }
 
-struct GenreServiceFacade: GenreServiceRepository {
-    static func fetchAllGenres() async throws -> MovieGenreResponse {
-        guard let url = URL(string: ServiceFlow.getMovieGenres.path) else {
-            throw ServiceError.badUrl
+extension GenreServiceClient {
+    static let live = Self(
+        fetchAllGenres: {
+            guard let url = URL(string: ServiceFlow.getMovieGenres.path) else {
+                throw ServiceError.badUrl
+            }
+            
+            let request = URLRequest(url: url)
+            let (data, _) = try await URLSession.shared.data(for: request)
+            let response = try JSONDecoder().decode(MovieGenreResponse.self, from: data)
+            
+            return response
+        },
+        fetchMoviesBasedOn: {
+            guard let url = URL(string: ServiceFlow.getMoviesOfGenre($0).path) else {
+                throw ServiceError.badUrl
+            }
+            
+            let request = URLRequest(url: url)
+            let (data, _) = try await URLSession.shared.data(for: request)
+            let response = try JSONDecoder().decode(MovieListResponse.self, from: data)
+            
+            return response
         }
-        
-        let request = URLRequest(url: url)
-        let (data, _) = try await URLSession.shared.data(for: request)
-        let response = try JSONDecoder().decode(MovieGenreResponse.self, from: data)
-        
-        return response
-    }
+    )
     
-    static func fetchMoviesBasedOn(genreId id: Int) async throws -> MovieListResponse {
-        guard let url = URL(string: ServiceFlow.getMoviesOfGenre(id).path) else {
-            throw ServiceError.badUrl
+    static var mock = Self(
+        fetchAllGenres: {
+            .init(
+                genres: [
+                    .init(id: 1, name: "Test genre")
+                ]
+            )
+        },
+        fetchMoviesBasedOn: { _ in
+            .init(
+                results: [
+                    .init(id: 1, title: "Test movie", popularity: 100.5)
+                ]
+            )
         }
-        
-        let request = URLRequest(url: url)
-        let (data, _) = try await URLSession.shared.data(for: request)
-        let response = try JSONDecoder().decode(MovieListResponse.self, from: data)
-        
-        return response
-    }
+    )
 }
